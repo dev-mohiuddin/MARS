@@ -1,6 +1,7 @@
+import { Card, CardContent } from '../ui/card'
 import React, { useEffect, useState, useRef } from 'react'
 import StreamingAvatar, { AvatarQuality, StreamingEvents } from '@heygen/streaming-avatar'
-import { BotMessageSquare, X, LoaderCircle, Mic, Pen, SendHorizonal } from 'lucide-react'
+import { BotMessageSquare, X, LoaderCircle, Mic, Pen, SendHorizonal, CircleCheck } from 'lucide-react'
 import { botBg } from '@/assets'
 
 const Bot = () => {
@@ -13,10 +14,6 @@ const Bot = () => {
     const videoRef = useRef(null)
     const [userInput, setUserInput] = useState('')
 
-    console.log('show bot', showBot)
-    console.log('session active', sessionActive)
-    console.log(loading)
-
     const fetchAccessToken = async () => {
         try {
             const response = await fetch('https://api.heygen.com/v1/streaming.create_token', {
@@ -26,6 +23,7 @@ const Bot = () => {
                 },
             })
             const data = await response.json()
+            console.log('Token:', data.data)
             return data.data.token
         } catch (error) {
             console.error('Error fetching access token:', error)
@@ -118,12 +116,13 @@ const Bot = () => {
     }, [])
 
     return (
-        <div className='z-50 bg-black'>
-            {showBot ? (
-                <div className='z-50 absolute right-10 bottom-[90px] w-[500px] rounded-md overflow-hidden'>
-                    <div className='relative'>
-                        <video ref={videoRef} autoPlay playsInline style={{ width: '100%', height: 'auto' }} />
-
+        <>
+            {showBot ? ( 
+                <div className='z-50 absolute right-10 bottom-[90px] w-[500px] rounded-md overflow-hidden bg-white dark:bg-gray-800 shadow-lg'>
+                    <div className='relative h-[280px] w-full'>
+                        {/* <div className={`${sessionActive ? 'hidden' : 'block'} rounded-md `}>
+                                <video ref={videoRef} autoPlay playsInline style={{ width: '100%', height: 'auto' }} />
+                            </div> */}
                         <video
                             className={`${sessionActive ? 'block' : 'hidden'} rounded-md `}
                             ref={videoRef}
@@ -132,52 +131,77 @@ const Bot = () => {
                             style={{ width: '100%', height: 'auto' }}
                         />
 
-                        <div className={`${sessionActive ? 'hidden' : 'block'}`}>
-                            <img src={botBg} className='h-full w-full object-cover rounded-md' alt='Bot' srcset='' />
+                        <div className={`${sessionActive ? 'hidden' : 'block'} rounded-md `}>
+                            <img src={botBg} className='h-auto w-full object-cover rounded-md' alt='Bot' srcset='' />
                         </div>
 
-                        <div className='chat-modes absolute bottom-2 w-full flex justify-center gap-5 ' role='group'>
-                            <button
-                                className={`${
-                                    mode === 'text' ? 'active' : ''
-                                } p-2 bg-primary/70 text-white rounded-full  `}
-                                onClick={() => switchMode('text')}
-                                disabled={!sessionActive}
-                            >
-                                <Pen size={20} />
-                            </button>
-                            <button
-                                className={`${
-                                    mode === 'voice' ? 'active' : ''
-                                } p-2 bg-primary/70 text-white rounded-full`}
-                                onClick={() => switchMode('voice')}
-                                disabled={!sessionActive}
-                            >
-                                <Mic size={20} />
-                            </button>
+                        <div
+                            className={`${
+                                sessionActive ? 'block' : 'hidden' 
+                            } chat-modes absolute bottom-2 w-full flex justify-center gap-5 `}
+                            role='group'
+                        >
+                            <div className='relative'>
+                                <button
+                                    className={`${
+                                        mode === 'text' ? 'active' : ''
+                                    } p-2 bg-primary/70 text-white rounded-full  `}
+                                    onClick={() => switchMode('text')}
+                                    disabled={!sessionActive}
+                                >
+                                    <Pen size={20} />
+                                </button>
+                                {mode === 'text' && (
+                                    <span className='absolute -left-1.5 -top-1.5 z-50'>
+                                        <CircleCheck className='text-green-500' size={18} />
+                                    </span>
+                                )}
+                            </div>
+                            <div className='relative'>
+                                <button
+                                    className={`${
+                                        mode === 'voice' ? 'active' : ''
+                                    } p-2 bg-primary/70 text-white rounded-full`}
+                                    onClick={() => switchMode('voice')}
+                                    disabled={!sessionActive}
+                                >
+                                    <Mic size={20} />
+                                </button>
+                                {mode === 'voice' && (
+                                    <span className='absolute -top-1.5 -right-1.5'>
+                                        <CircleCheck className='text-green-500' size={18} />
+                                    </span>
+                                )}
+                            </div>
+                            <span className='absolute left-2 bottom-0 text-primary bg-secondary px-2 py-1 rounded text-sm' >{mode === 'text' ? 'Text Mode' : 'Voice Mode'}</span>
                         </div>
                     </div>
 
-                    <div className='mt-2 w-full flex '>
+                    <div className={`${sessionActive ? 'block' : 'hidden'} mt-2 w-full flex`}>
                         {mode === 'text' && (
                             <div className='w-full flex items-center ' id='textModeControls'>
                                 <input
                                     type='text'
                                     value={userInput}
-                                    className="w-full h-10 rounded-l-md px-3 outline-none  "
+                                    className='w-full h-10 rounded-l-md px-3 outline-none bg-transparent dark:bg-gray-900 '
                                     onChange={e => setUserInput(e.target.value)}
                                     placeholder='Type something to talk to the avatar...'
                                 />
-                                <button className='p-2 justify-center items-center bg-primary rounded-r-md' onClick={handleSpeak}>
-                                    <SendHorizonal className='text-white ' size={20} />
+                                <button
+                                    className='p-2 justify-center items-center bg-primary rounded-r-md'
+                                    onClick={handleSpeak}
+                                >
+                                    <SendHorizonal className='text-white dark:text-black' size={20} />
                                 </button>
                             </div>
                         )}
                     </div>
 
                     {mode === 'voice' && (
-                        <div id='voiceModeControls' className='mt-1'>
-                            <div id='voiceStatus'>{voiceStatus}</div>
+                        <div id='voiceModeControls' className='mt-1 px-2'>
+                            <div className='pb-2' id='voiceStatus'>
+                                {voiceStatus}
+                            </div>
                         </div>
                     )}
                 </div>
@@ -190,7 +214,7 @@ const Bot = () => {
                     </button>
                 ) : (
                     <button onClick={initializeSession} disabled={sessionActive}>
-                        <BotMessageSquare className='text-primary' size={35} />
+                        <BotMessageSquare className='text-primary z-50' size={35} />
                     </button>
                 )}
             </div>
@@ -199,7 +223,7 @@ const Bot = () => {
                     <LoaderCircle className='animate-spin' size={35} />
                 </div>
             )}
-        </div>
+        </>
     )
 }
 

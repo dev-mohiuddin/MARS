@@ -10,7 +10,7 @@ function Layout () {
     return (
         <SidebarProvider className='overflow-hidden w-full flex'>
             <AppSidebar />
-            <main className='relative w-full flex-1'>
+            <main className='relative w-full flex-1 h-screen'>
                 <SidebarTrigger className='absolute top-4' />
                 <Navbar />
                 <Bot />
