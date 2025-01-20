@@ -3,6 +3,7 @@ import React, { useEffect, useState, useRef } from 'react'
 import StreamingAvatar, { AvatarQuality, StreamingEvents } from '@heygen/streaming-avatar'
 import { BotMessageSquare, X, LoaderCircle, Mic, Pen, SendHorizonal, CircleCheck } from 'lucide-react'
 import { botBg } from '@/assets'
+import { kbPrompt } from './prompt'
 
 const Bot = () => {
     const [mode, setMode] = useState('text')
@@ -45,6 +46,7 @@ const Bot = () => {
             avatarName: 'Dexter_Lawyer_Sitting_public',
             disableIdleTimeout: true,
             language: 'en',
+            knowledgeBase: kbPrompt,
         })
 
         console.log('Session initialized:', sessionData)
@@ -228,3 +230,5 @@ const Bot = () => {
 }
 
 export default Bot
+
+
