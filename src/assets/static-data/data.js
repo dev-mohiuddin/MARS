@@ -188,18 +188,7 @@ export const sidebarData = {
       ]
     }
   ],
-  projects: [
-    {
-      name: 'Sales',
-      url: '#',
-      icon: PieChart
-    },
-    {
-      name: 'Tour & Travel',
-      url: '#',
-      icon: Map
-    }
-  ]
+
 }
 
 export const dashboardData = {

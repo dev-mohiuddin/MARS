@@ -36,10 +36,6 @@ export function AppSidebar ({ ...props }) {
           items={sidebarData.navigation}
         />
         <Platform pathname={location.pathname} items={sidebarData.platform} />
-        <NavProjects
-          pathname={location.pathname}
-          projects={sidebarData.projects}
-        />
       </SidebarContent>
       <SidebarFooter>
         <NavUser />
