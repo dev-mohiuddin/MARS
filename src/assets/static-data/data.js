@@ -226,39 +226,27 @@ export const dashboardData = {
   keyMetrics: [
     {
       label: 'Total Charter Revenue (Oct)',
-      value: '87',
-      unit: '$40',
-      downfall: '50%'
+      value: '$40',
     },
     {
       label: 'Total Charter Revenue (YTD)',
-      value: '72',
-      unit: '$14',
-      downfall: '14%'
+      value: '$14',
     },
     {
       label: 'Total Operating Expenses (Oct)',
-      value: '80',
-      unit: '$25',
-      downfall: '40%'
+      value: '$25',
     },
     {
       label: 'Total Operating Expenses (YTD)',
-      value: '71',
-      unit: '$18',
-      downfall: '14%'
+      value: '$18',
     },
     {
       label: 'Total Owner Hours (Oct)',
-      value: '20',
-      unit: '$30',
-      downfall: '14%'
+      value: '$30',
     },
     {
       label: 'Total Charter Hours (Oct)',
-      value: '30',
-      unit: '$35',
-      downfall: '28%'
+      value: '$35',
     }
   ]
 }

@@ -1,0 +1,459 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "http://example.com/complete-app.schema.json",
+    "title": "CompleteAppData",
+    "type": "object",
+    "properties": {
+        "user": {
+            "userName": "GSutton",
+            "email": "gord@suttonintegrated.com",
+            "password": "",
+            "confirmPassword": "",
+            "firstName": "",
+            "lastName": "",
+            "mobile": "",
+            "home": "",
+            "office": "",
+            "countryRegion": "U.S.A.",
+            "city": "Hemet",
+            "gender": "Male",
+            "birthdate": "",
+            "language": "English"
+        },
+        "dashboard": {
+            "type": "object",
+            "properties": {
+                "overview": {
+                    "type": "array",
+                    "description": "Array for top-level stats cards on the dashboard.",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "icon": {
+                                "type": "string",
+                                "description": "Name/identifier of icon component (front-end detail)."
+                            },
+                            "total": {
+                                "type": "string",
+                                "description": "String representing numeric value (e.g., '10.9')."
+                            },
+                            "title": {
+                                "type": "string",
+                                "description": "Label describing the stat (e.g., 'total flights-2024')."
+                            },
+                            "description": {
+                                "type": "string",
+                                "description": "Additional info like percentage change."
+                            },
+                            "color": {
+                                "type": "string",
+                                "description": "Tailwind color class (e.g. 'bg-red-300')."
+                            }
+                        },
+                        "required": [
+                            "total",
+                            "title"
+                        ]
+                    }
+                },
+                "flightActivity": {
+                    "type": "array",
+                    "description": "Month-by-month flight data for charter vs. owner.",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "month": {
+                                "type": "string"
+                            },
+                            "charter": {
+                                "type": "number"
+                            },
+                            "owner": {
+                                "type": "number"
+                            }
+                        },
+                        "required": [
+                            "month",
+                            "charter",
+                            "owner"
+                        ]
+                    }
+                },
+                "keyMetrics": {
+                    "type": "array",
+                    "description": "Detailed metrics array on the Dashboard (Total Revenue, etc.).",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "label": {
+                                "type": "string"
+                            },
+                            "value": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "label",
+                            "value"
+                        ]
+                    }
+                }
+            },
+            "required": [
+                "overview",
+                "flightActivity",
+                "keyMetrics"
+            ]
+        },
+        "flightScheduleEvents": {
+            "type": "array",
+            "description": "Events for FullCalendar (the 'flight schedule').",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "start": {
+                        "type": [
+                            "string",
+                            "object"
+                        ],
+                        "description": "Date/time or possibly a Date object serialized as string."
+                    },
+                    "end": {
+                        "type": [
+                            "string",
+                            "object",
+                            "null"
+                        ],
+                        "description": "Optional end time for the event."
+                    },
+                    "allDay": {
+                        "type": "boolean"
+                    },
+                    "description": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "title",
+                    "start",
+                    "allDay"
+                ]
+            }
+        },
+        "bookings": {
+            "type": "array",
+            "description": "List of flight bookings displayed in 'BookingList'.",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "subject": {
+                        "type": "string"
+                    },
+                    "destination": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "string"
+                    },
+                    "totalPayment": {
+                        "type": "string"
+                    },
+                    "bookingDate": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "departureDate": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "returnDate": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "totalAmount": {
+                        "type": "string",
+                        "description": "Referenced but not actually in the array, so optional."
+                    }
+                },
+                "required": [
+                    "subject",
+                    "destination",
+                    "status",
+                    "totalPayment"
+                ]
+            }
+        },
+        "reports": {
+            "type": "object",
+            "properties": {
+                "charterRevenue": {
+                    "type": "array",
+                    "description": "Data from CharterRevTable.",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "flightID": {
+                                "type": "string"
+                            },
+                            "date": {
+                                "type": "string",
+                                "format": "date"
+                            },
+                            "clientName": {
+                                "type": "string"
+                            },
+                            "departureLocation": {
+                                "type": "string"
+                            },
+                            "destination": {
+                                "type": "string"
+                            },
+                            "departureTime": {
+                                "type": "string"
+                            },
+                            "returnDateTime": {
+                                "type": "string"
+                            },
+                            "aircraftType": {
+                                "type": "string"
+                            },
+                            "totalFlightHours": {
+                                "type": "number"
+                            },
+                            "totalRevenue": {
+                                "type": "number"
+                            },
+                            "operationalCost": {
+                                "type": "number"
+                            },
+                            "profit": {
+                                "type": "number"
+                            },
+                            "paymentStatus": {
+                                "type": "string"
+                            },
+                            "notes": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "flightID",
+                            "date",
+                            "clientName",
+                            "departureLocation",
+                            "destination",
+                            "departureTime",
+                            "returnDateTime",
+                            "aircraftType",
+                            "totalFlightHours",
+                            "totalRevenue",
+                            "operationalCost",
+                            "profit",
+                            "paymentStatus"
+                        ]
+                    }
+                },
+                "fixedCosts": {
+                    "type": "array",
+                    "description": "Data from FixedCostTable.",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "costType": {
+                                "type": "string"
+                            },
+                            "description": {
+                                "type": "string"
+                            },
+                            "amount": {
+                                "type": "number"
+                            },
+                            "frequency": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "costType",
+                            "amount",
+                            "frequency"
+                        ]
+                    }
+                },
+                "operatingCosts": {
+                    "type": "array",
+                    "description": "Data from OperatingCostTable.",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "costType": {
+                                "type": "string"
+                            },
+                            "description": {
+                                "type": "string"
+                            },
+                            "amount": {
+                                "type": "number"
+                            },
+                            "frequency": {
+                                "type": "string"
+                            },
+                            "remarks": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "costType",
+                            "amount",
+                            "frequency"
+                        ]
+                    }
+                },
+                "maintenanceCosts": {
+                    "type": "array",
+                    "description": "Data from MaintenanceCostTable.",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "maintenanceType": {
+                                "type": "string"
+                            },
+                            "description": {
+                                "type": "string"
+                            },
+                            "costAmount": {
+                                "type": "number"
+                            },
+                            "date": {
+                                "type": "string",
+                                "format": "date"
+                            },
+                            "duration": {
+                                "type": "string"
+                            },
+                            "serviceProvider": {
+                                "type": "string"
+                            },
+                            "remarks": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "maintenanceType",
+                            "description",
+                            "costAmount",
+                            "date"
+                        ]
+                    }
+                },
+                "variableCosts": {
+                    "type": "array",
+                    "description": "Data from VariableCostTable.",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "costType": {
+                                "type": "string"
+                            },
+                            "amountPerFlight": {
+                                "type": "number"
+                            },
+                            "flightDistance": {
+                                "type": "number"
+                            },
+                            "remarks": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "costType",
+                            "amountPerFlight"
+                        ]
+                    }
+                },
+                "revenueExpense": {
+                    "type": "object",
+                    "description": "Represents data for the Revenue/Expense chart (Pie chart).",
+                    "properties": {
+                        "revenue": {
+                            "type": "number"
+                        },
+                        "expenses": {
+                            "type": "number"
+                        }
+                    },
+                    "required": [
+                        "revenue",
+                        "expenses"
+                    ]
+                }
+            },
+            "required": [
+                "charterRevenue",
+                "fixedCosts",
+                "operatingCosts",
+                "maintenanceCosts",
+                "variableCosts",
+                "revenueExpense"
+            ]
+        }
+    },
+    "required": [
+        "dashboard",
+        "flightScheduleEvents",
+        "bookings",
+        "reports"
+    ]
+}
+
+
+// Path: src/assets/static-data/flight_logs.json
+//Ues this data to populate the flight logs table
+
+
+// {
+//     "flightLogs": [
+//       {
+//         "logNumber": "001",
+//         "flight": "FL123",
+//         "date": "2024-12-01",
+//         "client": "Client A",
+//         "hours": 3,
+//         "type": "charter",
+//         "details": "Business trip to NYC"
+//       },
+//       {
+//         "logNumber": "002",
+//         "flight": "FL124",
+//         "date": "2024-12-02",
+//         "client": "Client B",
+//         "hours": 2,
+//         "type": "owner",
+//         "details": "Private flight to LA"
+//       },
+//       {
+//         "logNumber": "003",
+//         "flight": "FL125",
+//         "date": "2024-12-03",
+//         "client": "Client C",
+//         "hours": 4,
+//         "type": "charter",
+//         "details": "Delivery to Chicago"
+//       }
+//     ],
+//     "summaryData": {
+//       "hoursStart": 128.7,
+//       "hoursDuring": 0.0,
+//       "hoursEnd": 128.7,
+//       "cyclesStart": 74,
+//       "cyclesDuring": 0,
+//       "cyclesEnd": 74
+//     }
+//   }
+  
