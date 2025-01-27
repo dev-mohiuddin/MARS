@@ -74,13 +74,13 @@ function UpdateProfile ({ onSave }) {
                 <CardTitle className='text-2xl font-bold my-2 ml-6'>Update Profile</CardTitle>
                 <CardHeader className='flex flex-col items-center'>
                     <Avatar className='w-24 h-24 mb-4'>
-                        <AvatarImage src={avatar} alt='User Avatar' />
+                        <AvatarImage className='w-full h-full object-cover' src={avatar} alt='User Avatar' />
                         <AvatarFallback>{user.firstName?.charAt(0) || 'U'}</AvatarFallback>
                     </Avatar>
                     <Dialog open={showAvatarDialog} onOpenChange={setShowAvatarDialog}>
                         <DialogTrigger asChild>
                             <Button variant='outline' size='sm' className='mt-2'>
-                                Change Avatar
+                                Change picture
                             </Button>
                         </DialogTrigger>
                         <DialogContent>
