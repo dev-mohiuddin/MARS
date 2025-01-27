@@ -226,27 +226,27 @@ export const dashboardData = {
   keyMetrics: [
     {
       label: 'Total Charter Revenue (Oct)',
-      value: '$40',
+      value: '40',
     },
     {
       label: 'Total Charter Revenue (YTD)',
-      value: '$14',
+      value: '14',
     },
     {
       label: 'Total Operating Expenses (Oct)',
-      value: '$25',
+      value: '25',
     },
     {
       label: 'Total Operating Expenses (YTD)',
-      value: '$18',
+      value: '18',
     },
     {
       label: 'Total Owner Hours (Oct)',
-      value: '$30',
+      value: '30',
     },
     {
       label: 'Total Charter Hours (Oct)',
-      value: '$35',
+      value: '35',
     }
   ]
 }

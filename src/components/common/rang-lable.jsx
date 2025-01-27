@@ -12,7 +12,7 @@ function RangeLable (props) {
             {/* <p className='text-muted-foreground'>{props?.value}</p> */}
             {/* <p className='text-muted-foreground'>{props?.unit}</p> */}
           </div>
-           <p className='text-muted-foreground'>{props?.value}</p>
+           <p className='text-muted-foreground'>${props?.value}</p>
         </div>
       </div>
       <Slider defaultValue={[props?.value]} max={100} step={1} />
