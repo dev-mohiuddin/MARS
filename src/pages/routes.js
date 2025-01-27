@@ -18,6 +18,8 @@ import PlaneDocuments from "./platform/reports/plane-documents";
 import Upload from "./platform/gallery/upload";
 import View from "./platform/gallery/view";
 import CheckAuth from "@/components/common/check-auth";
+import Profile from "./profile/Profile";
+import UpdateProfile from "./profile/update-profile";
 
 
 export {
@@ -41,4 +43,6 @@ export {
     Upload,
     View,
     CheckAuth,
+    Profile,
+    UpdateProfile
 }

@@ -19,6 +19,8 @@ import {
   Upload,
   View,
   CheckAuth,
+  Profile,
+  UpdateProfile
 } from './pages/routes'
 
 
@@ -72,6 +74,8 @@ function App () {
           </Route>
           <Route path='gellery-upload' element={<Upload />} />
           <Route path='gellery-view' element={<View />} />
+          <Route path='profile' element={<Profile />} />
+          <Route path='update-profile' element={<UpdateProfile />} />
         </Route>
         {/* end dashboard page */}
 
