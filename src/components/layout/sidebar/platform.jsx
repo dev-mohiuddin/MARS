@@ -24,7 +24,7 @@ export function Platform ({ pathname, items }) {
 
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>Platform</SidebarGroupLabel>
+      {/* <SidebarGroupLabel>Platform</SidebarGroupLabel> */}
       <SidebarMenu>
         {items.map(item => {
           const showItems = item?.roleAccess.includes(user?.role)
