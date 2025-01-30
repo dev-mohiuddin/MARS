@@ -197,28 +197,24 @@ export const dashboardData = {
       icon: PlaneTakeoff,
       total: '10.9',
       title: 'total flights-2024',
-      description: '8% from yesterday',
       color: 'bg-red-300'
     },
     {
       icon: Clock3,
       total: '40.04',
       title: 'Total flights Time',
-      description: '2% from yesterday',
       color: 'bg-yellow-300'
     },
     {
       icon: CircleGauge,
       total: '10.9',
       title: 'Total fuel-ytd 2024',
-      description: '1% from yesterday',
       color: 'bg-green-300'
     },
     {
       icon: FileSpreadsheet,
       total: '10.9',
       title: 'Monthly sumary-nov,2024',
-      description: '6% from yesterday',
       color: 'bg-violet-300'
     }
   ],

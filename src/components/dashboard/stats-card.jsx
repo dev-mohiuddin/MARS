@@ -39,7 +39,6 @@ function StatsCard ({ overview }) {
                   </div> 
                   <Label className='uppercase'>{item.title}</Label>
                 </div>
-                <small className='text-primary'>{item.description}</small>
               </CardContent>
             </Card>
           )
