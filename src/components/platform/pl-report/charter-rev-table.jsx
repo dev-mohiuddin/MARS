@@ -110,7 +110,7 @@ export function CharterRevTable () {
             <TableHead>Departure Location</TableHead>
             <TableHead>Destination</TableHead>
             <TableHead>Departure Time</TableHead>
-            <TableHead className='min-w-[150px]'>Return Date & Time</TableHead>
+            <TableHead className='min-w-[200px]'>Return Date & Time</TableHead>
             <TableHead>Aircraft Type</TableHead>
             <TableHead>Total Flight Hours</TableHead>
             <TableHead>Total Revenue</TableHead>

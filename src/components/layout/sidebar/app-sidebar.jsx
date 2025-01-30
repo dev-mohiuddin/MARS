@@ -2,7 +2,6 @@ import { sidebarData } from '@/assets/static-data/data'
 import { useLocation } from 'react-router-dom'
 import { Platform } from '@/components/layout/sidebar/platform'
 import { Navigation } from './navigation'
-import { NavUser } from './nav-user'
 import { logo } from '@/assets'
 import { Link } from 'react-router-dom'
 import {
@@ -10,7 +9,6 @@ import {
   SidebarContent,
   SidebarHeader,
   SidebarRail,
-  SidebarFooter
 } from '@/components/ui/sidebar'
 
 export function AppSidebar ({ ...props }) {
@@ -36,9 +34,6 @@ export function AppSidebar ({ ...props }) {
         />
         <Platform pathname={location.pathname} items={sidebarData.platform} />
       </SidebarContent>
-      <SidebarFooter>
-        <NavUser />
-      </SidebarFooter>
       <SidebarRail />
     </Sidebar>
   )

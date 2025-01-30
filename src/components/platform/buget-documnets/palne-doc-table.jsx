@@ -8,6 +8,13 @@ import {
   TableRow
 } from '@/components/ui/table'
 import { Button } from '@/components/ui/button'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
+import { trunCateText } from '@/lib/utils'
 
 export function PlaneDocumentsTable () {
   const planeDocuments = [
@@ -71,14 +78,23 @@ export function PlaneDocumentsTable () {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {planeDocuments.map((doc, index) => (
+        {planeDocuments?.map((doc, index) => (
           <TableRow key={index}>
             <TableCell>{doc.documentType}</TableCell>
             <TableCell>{doc.documentId}</TableCell>
             <TableCell>{doc.issueDate}</TableCell>
             <TableCell>{doc.expirationDate}</TableCell>
             <TableCell>{doc.status}</TableCell>
-            <TableCell>{doc.remarks}</TableCell>
+            <TableCell>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <span>{trunCateText(doc.remarks, 10)}</span>
+                  </TooltipTrigger>
+                  <TooltipContent>{doc.remarks}</TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </TableCell>
             <TableCell>
               <div className='flex gap-2'>
                 <Button

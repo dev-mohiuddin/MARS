@@ -8,6 +8,13 @@ import {
   TableRow
 } from '@/components/ui/table'
 import { Button } from '@/components/ui/button'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
+import { trunCateText } from '@/lib/utils'
 
 export function AccountStatementsTable () {
   const accountStatements = [
@@ -63,7 +70,16 @@ export function AccountStatementsTable () {
           <TableRow key={index}>
             <TableCell>{transaction.transactionId}</TableCell>
             <TableCell>{transaction.date}</TableCell>
-            <TableCell>{transaction.description}</TableCell>
+            <TableCell>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <span>{trunCateText(transaction.description, 20)}</span>
+                  </TooltipTrigger>
+                  <TooltipContent>{transaction.description}</TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </TableCell>
             <TableCell>
               {transaction.credit > 0 ? `$${transaction.credit}` : '-'}
             </TableCell>

@@ -3,6 +3,8 @@ import { MoveUp, MoveDown } from 'lucide-react'
 
 function RangeLable (props) {
 
+  const numericValue = parseInt(props?.value.replace("$", ""), 10);
+
   return (
     <div className='space-y-1 xl:space-y-4 w-auto'>
       <div className='flex justify-between items-center'>
@@ -12,10 +14,10 @@ function RangeLable (props) {
             {/* <p className='text-muted-foreground'>{props?.value}</p> */}
             {/* <p className='text-muted-foreground'>{props?.unit}</p> */}
           </div>
-           <p className='text-muted-foreground'>${props?.value}</p>
+           <p className='text-muted-foreground'>{props?.value}</p>
         </div>
       </div>
-      <Slider defaultValue={[props?.value]} max={100} step={1} />
+      <Slider defaultValue={[numericValue]} max={100} step={1} />
     </div>
   )
 }

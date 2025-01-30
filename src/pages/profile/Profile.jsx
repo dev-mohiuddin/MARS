@@ -42,7 +42,7 @@ function Profile () {
                     </div>
                 </CardHeader>
                 <CardContent className='space-y-6 mt-4'>
-                    <div className='flex items-center gap-5'>
+                    <div className='flex items-center gap-5'> 
                         <span className='text-sm font-semibold '>Gender</span>
                         <Badge>{user?.gender || 'N/A'}</Badge>
                     </div>
